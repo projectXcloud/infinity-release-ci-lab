@@ -40,8 +40,8 @@
     },
     "desired": {
       "app-a/dev": {
-        "generation": 15,
-        "material_key": "6f42a064ceaec0f64216afb3a9464aa9b892d48a6eb05adc47be8b991aaff948"
+        "generation": 16,
+        "material_key": "ae9aab659bdbc3a5e2aa9cb495a98a9795ec95bb6d1902f6583bf8e1a793ee79"
       },
       "app-a/main": {
         "generation": 2,
@@ -1047,7 +1047,7 @@
         "version": "1.0.1"
       }
     },
-    "revision": 189,
+    "revision": 190,
     "schema": 1,
     "source_tags": {
       "v1.0.1": "e71261036f094b711621aa3c53e3267673f72d19",
