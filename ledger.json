@@ -521,7 +521,7 @@
       "581456415703081854d372efbf65a0841b2db41530080abbb5414f8e513f13f6": {
         "abort_reason": null,
         "base_digest": null,
-        "digest": null,
+        "digest": "sha256:e926a860fb785aa14103fa5bad04db86592d0e5094d163025e94d79526fbf446",
         "payload": {
           "causes": [
             "dependency"
@@ -537,8 +537,8 @@
         },
         "payload_hash": "03b53a90ad2a50af483dccfa82bcd0894d55a987af85ea269152ce2e9ba29c4e",
         "serial": 5,
-        "status": "reserved",
-        "verification": null,
+        "status": "published",
+        "verification": "ghcr.io/projectxcloud/infinity-release-ci-lab/base/dev@sha256:e926a860fb785aa14103fa5bad04db86592d0e5094d163025e94d79526fbf446",
         "version": "1.1.2"
       },
       "7787230e8fd3319064de68982567a25265ab08b580c5ee803fbf9c970b8701cf": {
@@ -657,7 +657,7 @@
         "version": "1.0.1"
       }
     },
-    "revision": 112,
+    "revision": 113,
     "schema": 1,
     "source_tags": {
       "v1.0.1": "e71261036f094b711621aa3c53e3267673f72d19",
