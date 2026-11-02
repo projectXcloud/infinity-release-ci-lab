@@ -1,6 +1,6 @@
 {
   "active_jobs": {
-    "dev": "dev/matrix-41460080541-1-aba-pending",
+    "dev": "dev/matrix-41460080541-1-aba-B",
     "main": "main/pr-5"
   },
   "core": {
@@ -873,6 +873,28 @@
         }
       },
       "status": "complete"
+    },
+    "dev/matrix-41460080541-1-aba-B": {
+      "base_causes": [],
+      "builder_sha": "ff3f14bfaea2b5b0484bdb800b22a0dbe7236d6e",
+      "completed": [],
+      "config_sha256": "d432d7aaa927a5cab4c9a2ebd38a0d7e131f39d5c3288b466783138f9e02c787",
+      "config_text": "{\n  \"app-a\": {\n    \"build\": {\n      \"args\": {\n        \"MODE\": \"matrix-41460080541-1-aba-B\"\n      },\n      \"platform\": \"linux/amd64\",\n      \"variant\": \"standard\"\n    },\n    \"dependencies\": {\n      \"app-only\": {\n        \"branch\": \"fixture/app-only\",\n        \"commit\": \"2ad047fd880d978bc487344b2aec4693c7821458\",\n        \"repository\": \"https://github.com/projectXcloud/infinity-release-ci-lab\",\n        \"subdirectory\": \"fixtures/deps/app-only\",\n        \"version_tag\": \"fixture/app-only/v1.0.1\"\n      },\n      \"shared\": {\n        \"branch\": \"fixture/shared\",\n        \"commit\": \"e8d12c1a8b26af8af605578cdd4d751976bf576f\",\n        \"repository\": \"https://github.com/projectXcloud/infinity-release-ci-lab\",\n        \"subdirectory\": \"fixtures/deps/shared\",\n        \"version_tag\": \"fixture/shared/v1.0.1\"\n      }\n    },\n    \"schemaVersion\": 1\n  },\n  \"app-b\": {\n    \"build\": {\n      \"args\": {\n        \"MODE\": \"release\"\n      },\n      \"platform\": \"linux/amd64\",\n      \"variant\": \"standard\"\n    },\n    \"dependencies\": {\n      \"shared\": {\n        \"branch\": \"fixture/shared\",\n        \"commit\": \"e8d12c1a8b26af8af605578cdd4d751976bf576f\",\n        \"repository\": \"https://github.com/projectXcloud/infinity-release-ci-lab\",\n        \"subdirectory\": \"fixtures/deps/shared\",\n        \"version_tag\": \"fixture/shared/v1.0.1\"\n      }\n    },\n    \"schemaVersion\": 1\n  },\n  \"base\": {\n    \"build\": {\n      \"args\": {\n        \"MODE\": \"release\"\n      },\n      \"platform\": \"linux/amd64\",\n      \"variant\": \"standard\"\n    },\n    \"dependencies\": {\n      \"matrix-shared\": {\n        \"branch\": \"fixture/shared\",\n        \"commit\": \"e8d12c1a8b26af8af605578cdd4d751976bf576f\",\n        \"repository\": \"https://github.com/projectXcloud/infinity-release-ci-lab\",\n        \"subdirectory\": \"fixtures/deps/shared\",\n        \"version_tag\": \"fixture/shared/v1.0.1\"\n      }\n    },\n    \"schemaVersion\": 1\n  }\n}\n",
+      "sources": {
+        "app-a": {
+          "sha": "1e9d71195315930e9b5fc075adc34b3cebd00128",
+          "tag": "v1.5.1"
+        },
+        "app-b": {
+          "sha": "1e9d71195315930e9b5fc075adc34b3cebd00128",
+          "tag": "v1.5.1"
+        },
+        "base": {
+          "sha": "ad39e4c9f86af7c1800109e9c37702e5f697e198",
+          "tag": "v1.5.2"
+        }
+      },
+      "status": "pending"
     },
     "dev/matrix-41460080541-1-aba-pending": {
       "base_causes": [],
