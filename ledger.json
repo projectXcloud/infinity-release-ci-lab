@@ -35,6 +35,10 @@
       "base/dev": {
         "generation": 3,
         "material_key": "eadea8996d6d41ac4091900f6a57c078dd8877ed967026c54222d65304f3a2e2"
+      },
+      "base/main": {
+        "generation": 1,
+        "material_key": "60188ec21d9db86a8f95ba434100826e073e00d351f291e91ef5266819f853dc"
       }
     },
     "entries": {
@@ -188,7 +192,7 @@
         "version": "1.0.1"
       }
     },
-    "revision": 28,
+    "revision": 29,
     "schema": 1,
     "source_tags": {
       "v1.0.1": "e71261036f094b711621aa3c53e3267673f72d19",
