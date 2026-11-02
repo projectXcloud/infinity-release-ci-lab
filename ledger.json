@@ -490,6 +490,29 @@
         "verification": "ghcr.io/projectxcloud/infinity-release-ci-lab/base/dev@sha256:e17cfa3131f62f6c0a09672f27352ad8bc15befa15822a668bdec00a71745b70",
         "version": "1.0.2"
       },
+      "c8f11680a3b2f84145a815ad3185b361cdb6744b62a9c63cb0eb966977ca6864": {
+        "abort_reason": null,
+        "base_digest": null,
+        "digest": null,
+        "payload": {
+          "causes": [
+            "base_patch"
+          ],
+          "channel": "dev",
+          "desired_generation": 4,
+          "image": "app-b",
+          "material_key": "29915dd382be777f25ea487dbb7cace989ab24f3df02329e5b17b20a3ffc44aa",
+          "plan_hash": "bd291e58448b3168732304f358b22db7dc0d686b440793a6f839008026ef68c1",
+          "requires_base": true,
+          "source_commit": "1e9d71195315930e9b5fc075adc34b3cebd00128",
+          "source_tag": "v1.5.1"
+        },
+        "payload_hash": "e6b52d75e032151bedf7b36e6dd33251bb427e981761dc30179fdfaa8373b3e9",
+        "serial": null,
+        "status": "prepared",
+        "verification": null,
+        "version": null
+      },
       "f59c4c8362e43b5acaf8a3f29df025c0520a705d09d6c9430dc9d85362b2f077": {
         "abort_reason": null,
         "base_digest": "sha256:e17cfa3131f62f6c0a09672f27352ad8bc15befa15822a668bdec00a71745b70",
@@ -514,7 +537,7 @@
         "version": "1.0.1"
       }
     },
-    "revision": 86,
+    "revision": 87,
     "schema": 1,
     "source_tags": {
       "v1.0.1": "e71261036f094b711621aa3c53e3267673f72d19",
