@@ -35,6 +35,7 @@ permissions:
   actions: read
 concurrency:
   group: synthetic-release-ledger
+  queue: max
   cancel-in-progress: false
 jobs:
   publish:
