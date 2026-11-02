@@ -1119,24 +1119,24 @@
   "schema": 1,
   "sources": {
     "app-a/dev": {
-      "sha": "f4dbdf0bfc1516b85da75a3fcd72efa364e124fa",
-      "tag": "v1.5.0"
+      "sha": "1e9d71195315930e9b5fc075adc34b3cebd00128",
+      "tag": "v1.5.1"
     },
     "app-a/main": {
       "sha": "89a2fb44711f297c2492246406c9dc378dbda876",
       "tag": "v1.0.3"
     },
     "app-b/dev": {
-      "sha": "e71261036f094b711621aa3c53e3267673f72d19",
-      "tag": "v1.0.1"
+      "sha": "1e9d71195315930e9b5fc075adc34b3cebd00128",
+      "tag": "v1.5.1"
     },
     "app-b/main": {
       "sha": "89a2fb44711f297c2492246406c9dc378dbda876",
       "tag": "v1.0.3"
     },
     "base/dev": {
-      "sha": "d2ce7458a16f621daa25d3be189d70eff1dffe67",
-      "tag": "v1.0.2"
+      "sha": "1e9d71195315930e9b5fc075adc34b3cebd00128",
+      "tag": "v1.5.1"
     },
     "base/main": {
       "sha": "d1a9ac12ed49e439392a015e82d196b4fa4cb0f5",
