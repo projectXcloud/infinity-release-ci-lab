@@ -1024,7 +1024,7 @@
           "tag": "v1.5.2"
         }
       },
-      "status": "pending"
+      "status": "complete"
     },
     "dev/bootstrap-dev-v1": {
       "base_causes": [
