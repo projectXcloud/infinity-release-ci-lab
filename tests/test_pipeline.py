@@ -1,8 +1,10 @@
 import copy
+import io
 import json
 from pathlib import Path
 import sys
 import unittest
+import zipfile
 from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "ci"))
@@ -24,7 +26,7 @@ class AdapterTests(unittest.TestCase):
 
     def test_forbidden_files(self):
         p.check_files(["config.example.jsonc", "fixtures/base/payload.json"])
-        for path in ["VERSION", "a/VERSION", "config.local.jsonc", "nested/config.jsonc", ".local/x", "a/.local/x"]:
+        for path in ["VERSION", "a/VERSION", "config.local.jsonc", "nested/config.jsonc", ".local/x", "a/.local/x", "out/snapshot.json", "ci/__pycache__/config.pyc", "cache.pyc"]:
             with self.assertRaises(ValueError, msg=path):
                 p.check_files([path])
 
@@ -38,8 +40,8 @@ class AdapterTests(unittest.TestCase):
         self.assertEqual(p.causes_for(lock, lock, before, before, []), ["material"])
 
     def test_pull_checks_exact_material(self):
-        material = {"lock": {"base_digest": "sha256:" + "a" * 64}}
-        base = {"lock": {"base_digest": None}}
+        material = {"lock": {"base_digest": "sha256:" + "a" * 64, "dependencies": []}}
+        base = {"lock": {"base_digest": None, "dependencies": []}}
         def fake(*args, **kw):
             return json.dumps({"app-a": material, "base": base}) if args[1] == "run" else ""
         with patch.object(p, "run", side_effect=fake), patch.object(p, "save"):
@@ -64,6 +66,46 @@ class AdapterTests(unittest.TestCase):
             ledger.write("test")
         self.assertEqual(calls[1][1]["parents"], ["old"])
         self.assertEqual(calls[2][1], {"sha": "new", "force": False})
+
+    def test_late_first_source_requires_forward_ancestry(self):
+        sources = {"app-a/dev": {"sha": "new", "tag": "v1.0.2"}}
+        def ancestry(*args):
+            if args[-2:] == ("new", "old"):
+                raise RuntimeError("not ancestor")
+            return ""
+        with patch.object(p, "run", side_effect=ancestry):
+            with self.assertRaises(RuntimeError):
+                p.require_source_progression(sources, "dev", ("app-a",), "old")
+            p.require_source_progression(sources, "dev", ("app-a",), "new")
+            p.require_source_progression(sources, "dev", ("app-a",), "newer")
+
+    def test_publisher_binds_checked_metadata_and_exact_merge_parents(self):
+        request = {"component": "app-a", "requested_version": "1.0.2", "release_kind": "source"}
+        checked = {"pr_number": 3, "request": request, "head_sha": "head", "base_sha": "base", "base_ref": "dev"}
+        body = "<!-- release-request -->\n```json\n" + json.dumps(request) + "\n```"
+        pr = {"number": 3, "head": {"sha": "head"}, "base": {"ref": "dev"}, "merge_commit_sha": "merged", "body": body}
+        data = io.BytesIO()
+        with zipfile.ZipFile(data, "w") as archive:
+            archive.writestr("checked-request.json", json.dumps(checked))
+        def api(path, *args):
+            if path.startswith("actions/workflows/"):
+                return {"workflow_runs": [{"id": 17, "head_sha": "head", "run_attempt": 1, "pull_requests": []}]}
+            return {"artifacts": [{"id": 9, "name": "checked-request-1", "expired": False}]}
+        def run(*args, **kwargs):
+            return "merged base head" if args[1] == "rev-list" else "fixtures/app-a/payload.json"
+        with patch.object(p, "api", side_effect=api), patch.object(p.subprocess, "check_output", return_value=data.getvalue()), patch.object(p, "run", side_effect=run):
+            self.assertEqual(p.checked_request(pr), (checked, 17))
+            unrelated = copy.deepcopy(pr)
+            unrelated["number"] = 99
+            with self.assertRaisesRegex(ValueError, "PR number"):
+                p.checked_request(unrelated)
+            changed = copy.deepcopy(pr)
+            changed["body"] = body.replace('"app-a"', '"app-b"')
+            with self.assertRaisesRegex(ValueError, "metadata changed"):
+                p.checked_request(changed)
+            with patch.object(p, "run", return_value="merged untested-base head"):
+                with self.assertRaisesRegex(ValueError, "merge parents"):
+                    p.checked_request(pr)
 
 
 if __name__ == "__main__":
