@@ -1,1 +1,1 @@
-Synthetic app-only dependency version one.
+Synthetic app-only dependency version two.
