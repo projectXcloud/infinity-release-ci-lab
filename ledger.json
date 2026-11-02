@@ -99,7 +99,7 @@
       "afce90194249508f7fc15f4f2e4451cb13f14bb6491764ad032e544017ae23b7": {
         "abort_reason": null,
         "base_digest": null,
-        "digest": null,
+        "digest": "sha256:e17cfa3131f62f6c0a09672f27352ad8bc15befa15822a668bdec00a71745b70",
         "payload": {
           "causes": [
             "base_patch"
@@ -115,12 +115,12 @@
         },
         "payload_hash": "e89210b2ebcb39498c9cc33c2f228480317617dec6a2286df4540690c9c74ac9",
         "serial": 2,
-        "status": "reserved",
-        "verification": null,
+        "status": "published",
+        "verification": "ghcr.io/projectxcloud/infinity-release-ci-lab/base/dev@sha256:e17cfa3131f62f6c0a09672f27352ad8bc15befa15822a668bdec00a71745b70",
         "version": "1.0.2"
       }
     },
-    "revision": 14,
+    "revision": 15,
     "schema": 1,
     "source_tags": {
       "v1.0.1": "e71261036f094b711621aa3c53e3267673f72d19",
