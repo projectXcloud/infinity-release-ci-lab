@@ -110,7 +110,7 @@ def check():
         raise ValueError("Request component does not cover changed fixture sources")
     tags = run("git", "tag", "--list").splitlines()
     preview = core.allocate_source(request["requested_version"], tags)
-    save("checked-request.json", {"request": request, "head_sha": pr["head"]["sha"],
+    save("checked-request.json", {"pr_number": pr["number"], "request": request, "head_sha": pr["head"]["sha"],
                                  "base_sha": pr["base"]["sha"], "base_ref": pr["base"]["ref"]})
     print(json.dumps({"request": request, "allocation_preview_only": preview, "changed": changed}))
 
@@ -119,22 +119,33 @@ def checked_request(pr):
     """Consume retained output from the successful required check, not mutable body alone."""
     head = pr["head"]["sha"]
     runs = api(f"actions/workflows/check.yml/runs?event=pull_request&status=success&head_sha={head}&per_page=100")
-    matching = [r for r in runs["workflow_runs"] if r["head_sha"] == head
-                and any(x["number"] == pr["number"] for x in r.get("pull_requests", []))]
+    # GitHub can clear pull_requests after merge. The retained artifact binds
+    # PR identity; the run still binds the workflow, successful result and head.
+    matching = sorted([r for r in runs["workflow_runs"] if r["head_sha"] == head],
+                      key=lambda r: r["id"], reverse=True)
     if not matching:
         raise ValueError("No successful required-check run for this PR head")
-    selected = max(matching, key=lambda r: r["id"])
-    artifacts = api(f"actions/runs/{selected['id']}/artifacts")["artifacts"]
-    records = [a for a in artifacts if a["name"] == "checked-request" and not a["expired"]]
-    if len(records) != 1:
-        raise ValueError("Missing unique retained checked request")
-    data = subprocess.check_output(["gh", "api", f"repos/{REPO}/actions/artifacts/{records[0]['id']}/zip"])
-    if len(data) > 1_000_000:
-        raise ValueError("Oversized checked request")
-    with zipfile.ZipFile(io.BytesIO(data)) as archive:
-        if archive.namelist() != ["checked-request.json"] or archive.getinfo("checked-request.json").file_size > 65536:
-            raise ValueError("Invalid checked-request artifact")
-        record = core.strict_json_loads(archive.read("checked-request.json").decode())
+    record = None
+    for selected in matching:
+        artifacts = api(f"actions/runs/{selected['id']}/artifacts")["artifacts"]
+        name = f"checked-request-{selected['run_attempt']}"
+        records = [a for a in artifacts if a["name"] == name and not a["expired"]]
+        if not records:
+            continue
+        if len(records) != 1:
+            raise ValueError("Missing unique retained checked request")
+        data = subprocess.check_output(["gh", "api", f"repos/{REPO}/actions/artifacts/{records[0]['id']}/zip"])
+        if len(data) > 1_000_000:
+            raise ValueError("Oversized checked request")
+        with zipfile.ZipFile(io.BytesIO(data)) as archive:
+            if archive.namelist() != ["checked-request.json"] or archive.getinfo("checked-request.json").file_size > 65536:
+                raise ValueError("Invalid checked-request artifact")
+            candidate = core.strict_json_loads(archive.read("checked-request.json").decode())
+        if candidate.get("pr_number") == pr["number"]:
+            record = candidate
+            break
+    if record is None:
+        raise ValueError("No retained checked request for this PR number")
     if record["head_sha"] != head or record["base_ref"] != pr["base"]["ref"]:
         raise ValueError("Checked request identity mismatch")
     if record["request"] != core.parse_request(pr.get("body") or ""):
