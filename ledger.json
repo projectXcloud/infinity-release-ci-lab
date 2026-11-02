@@ -486,6 +486,29 @@
         "verification": "ghcr.io/projectxcloud/infinity-release-ci-lab/app-a/dev@sha256:8b63847b5bc68776e50d421b819432ef1c782b97f5679d8ad9acb6af62272f28",
         "version": "1.1.11"
       },
+      "200a311aac6b8ae51feba98f2d66f4be371e98fb53cda1397f60440f033e0941": {
+        "abort_reason": null,
+        "base_digest": null,
+        "digest": null,
+        "payload": {
+          "causes": [
+            "base_major"
+          ],
+          "channel": "dev",
+          "desired_generation": 8,
+          "image": "base",
+          "material_key": "b98bb6a5ee34354c60a4a76683083aa050cb6131ad3179c671d3af91fa5504ef",
+          "plan_hash": "a13f260dc4c803203508817caf4e7dc17200ba5a6788f3c989f14d42c77d178f",
+          "requires_base": false,
+          "source_commit": "84319262c70181b46f4af4424c1bef528c8a92c0",
+          "source_tag": "v2.0.1"
+        },
+        "payload_hash": "85f8adba7c92024f80509cc0432d950bfce46bf308db68b84509e659f2fc0eb5",
+        "serial": null,
+        "status": "prepared",
+        "verification": null,
+        "version": null
+      },
       "29b55dc460f7ea4d9aeff5c8ee5705fbb83f6a56809a9647845931c7a0665ef8": {
         "abort_reason": null,
         "base_digest": "sha256:e926a860fb785aa14103fa5bad04db86592d0e5094d163025e94d79526fbf446",
@@ -1017,7 +1040,7 @@
         "version": "1.0.1"
       }
     },
-    "revision": 185,
+    "revision": 186,
     "schema": 1,
     "source_tags": {
       "v1.0.1": "e71261036f094b711621aa3c53e3267673f72d19",
@@ -1027,7 +1050,8 @@
       "v1.5.0": "f4dbdf0bfc1516b85da75a3fcd72efa364e124fa",
       "v1.5.1": "1e9d71195315930e9b5fc075adc34b3cebd00128",
       "v1.5.2": "ad39e4c9f86af7c1800109e9c37702e5f697e198",
-      "v2.0.0": "51991b3834b914dd6fd349f7d46a7ed3071b841e"
+      "v2.0.0": "51991b3834b914dd6fd349f7d46a7ed3071b841e",
+      "v2.0.1": "84319262c70181b46f4af4424c1bef528c8a92c0"
     }
   },
   "jobs": {
@@ -1400,7 +1424,9 @@
       "status": "complete"
     },
     "dev/pr-10": {
-      "base_causes": [],
+      "base_causes": [
+        "base_major"
+      ],
       "builder_sha": "ff3f14bfaea2b5b0484bdb800b22a0dbe7236d6e",
       "completed": [],
       "config_sha256": "448c8ee89c7a027c079da7be624a59d08eabca3c8bf57bd4331ef635c30aabb1",
