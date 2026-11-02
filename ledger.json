@@ -472,7 +472,7 @@
       },
       "1229cca3c738771c30026b1a450233ea791b7f409ced67e55d29781d27645ebd": {
         "abort_reason": null,
-        "base_digest": null,
+        "base_digest": "sha256:b6abee34736486836929bc2e39fc841579ff7fe21c73558f376b04b54b8c23a7",
         "digest": null,
         "payload": {
           "causes": [
@@ -1070,7 +1070,7 @@
         "version": "1.0.1"
       }
     },
-    "revision": 191,
+    "revision": 192,
     "schema": 1,
     "source_tags": {
       "v1.0.1": "e71261036f094b711621aa3c53e3267673f72d19",
