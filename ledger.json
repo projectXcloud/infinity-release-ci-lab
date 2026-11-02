@@ -155,9 +155,32 @@
         "status": "committed",
         "verification": "ghcr.io/projectxcloud/infinity-release-ci-lab/base/dev@sha256:e17cfa3131f62f6c0a09672f27352ad8bc15befa15822a668bdec00a71745b70",
         "version": "1.0.2"
+      },
+      "f59c4c8362e43b5acaf8a3f29df025c0520a705d09d6c9430dc9d85362b2f077": {
+        "abort_reason": null,
+        "base_digest": null,
+        "digest": null,
+        "payload": {
+          "causes": [
+            "base_patch"
+          ],
+          "channel": "dev",
+          "desired_generation": 2,
+          "image": "app-b",
+          "material_key": "704a447a8e35587a6487eb69e4b9c69b83a7019e8026bc2f44969fee3f8b10ac",
+          "plan_hash": "d2f78b46ef647f4c2d8b55ac8ed371f372c73e32ff17ab0ec3d56a568c5a07fa",
+          "requires_base": true,
+          "source_commit": "e71261036f094b711621aa3c53e3267673f72d19",
+          "source_tag": "v1.0.1"
+        },
+        "payload_hash": "c9ea8720b525e1db693aa5660e1d7f4fc20524cf80d857a9a8a37ebcd4f7f18b",
+        "serial": null,
+        "status": "prepared",
+        "verification": null,
+        "version": null
       }
     },
-    "revision": 23,
+    "revision": 24,
     "schema": 1,
     "source_tags": {
       "v1.0.1": "e71261036f094b711621aa3c53e3267673f72d19",
