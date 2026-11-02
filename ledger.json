@@ -614,7 +614,9 @@
     "dev/matrix-41460080541-1-app-only": {
       "base_causes": [],
       "builder_sha": "ff3f14bfaea2b5b0484bdb800b22a0dbe7236d6e",
-      "completed": [],
+      "completed": [
+        "base"
+      ],
       "config_sha256": "475ea507af6cb3f21ec420da956aa2d9c463d277904feb89f962ced902aa9e4e",
       "config_text": "{\n  \"app-a\": {\n    \"build\": {\n      \"args\": {\n        \"MODE\": \"release\"\n      },\n      \"platform\": \"linux/amd64\",\n      \"variant\": \"standard\"\n    },\n    \"dependencies\": {\n      \"app-only\": {\n        \"branch\": \"fixture/app-only\",\n        \"commit\": \"2ad047fd880d978bc487344b2aec4693c7821458\",\n        \"repository\": \"https://github.com/projectXcloud/infinity-release-ci-lab\",\n        \"subdirectory\": \"fixtures/deps/app-only\",\n        \"version_tag\": \"fixture/app-only/v1.0.1\"\n      },\n      \"shared\": {\n        \"branch\": \"fixture/shared\",\n        \"commit\": \"e71261036f094b711621aa3c53e3267673f72d19\",\n        \"repository\": \"https://github.com/projectXcloud/infinity-release-ci-lab\",\n        \"subdirectory\": \"fixtures/deps/shared\",\n        \"version_tag\": \"fixture/shared/v1.0.0\"\n      }\n    },\n    \"schemaVersion\": 1\n  },\n  \"app-b\": {\n    \"build\": {\n      \"args\": {\n        \"MODE\": \"release\"\n      },\n      \"platform\": \"linux/amd64\",\n      \"variant\": \"standard\"\n    },\n    \"dependencies\": {\n      \"shared\": {\n        \"branch\": \"fixture/shared\",\n        \"commit\": \"e71261036f094b711621aa3c53e3267673f72d19\",\n        \"repository\": \"https://github.com/projectXcloud/infinity-release-ci-lab\",\n        \"subdirectory\": \"fixtures/deps/shared\",\n        \"version_tag\": \"fixture/shared/v1.0.0\"\n      }\n    },\n    \"schemaVersion\": 1\n  },\n  \"base\": {\n    \"build\": {\n      \"args\": {\n        \"MODE\": \"release\"\n      },\n      \"platform\": \"linux/amd64\",\n      \"variant\": \"standard\"\n    },\n    \"dependencies\": {},\n    \"schemaVersion\": 1\n  }\n}\n",
       "sources": {
