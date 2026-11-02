@@ -9,7 +9,7 @@
       "app-a/main": "1.0.1",
       "app-b/dev": "1.0.1",
       "app-b/main": "1.0.1",
-      "base/dev": "1.0.2",
+      "base/dev": "1.1.0",
       "base/main": "1.0.1"
     },
     "counters": {
@@ -157,6 +157,13 @@
           "material_key": "eadea8996d6d41ac4091900f6a57c078dd8877ed967026c54222d65304f3a2e2",
           "serial": 2,
           "verification": "ghcr.io/projectxcloud/infinity-release-ci-lab/base/dev@sha256:e17cfa3131f62f6c0a09672f27352ad8bc15befa15822a668bdec00a71745b70"
+        },
+        "1.1.0": {
+          "digest": "sha256:1572bbcd119a1c45ef91301d0bef114c61c4ca968f2a93d469c711303464c347",
+          "intent_id": "7787230e8fd3319064de68982567a25265ab08b580c5ee803fbf9c970b8701cf",
+          "material_key": "cd5b2bd75aabdb8fcc37677120d812273433b5ddd6759701a292b2e05f37937c",
+          "serial": 3,
+          "verification": "ghcr.io/projectxcloud/infinity-release-ci-lab/base/dev@sha256:1572bbcd119a1c45ef91301d0bef114c61c4ca968f2a93d469c711303464c347"
         }
       },
       "base/main": {
@@ -311,7 +318,7 @@
         },
         "payload_hash": "176b58d7df3fc3c86480d9333eee7f412aface55d741b0adaf2783ae4d755e28",
         "serial": 3,
-        "status": "published",
+        "status": "committed",
         "verification": "ghcr.io/projectxcloud/infinity-release-ci-lab/base/dev@sha256:1572bbcd119a1c45ef91301d0bef114c61c4ca968f2a93d469c711303464c347",
         "version": "1.1.0"
       },
@@ -385,7 +392,7 @@
         "version": "1.0.1"
       }
     },
-    "revision": 61,
+    "revision": 62,
     "schema": 1,
     "source_tags": {
       "v1.0.1": "e71261036f094b711621aa3c53e3267673f72d19",
