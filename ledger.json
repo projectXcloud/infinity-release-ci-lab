@@ -14,8 +14,8 @@
     },
     "counters": {
       "app-a/dev": {
-        "last_version": "1.1.6",
-        "serial": 9
+        "last_version": "1.1.7",
+        "serial": 10
       },
       "app-a/main": {
         "last_version": "1.0.1",
@@ -663,10 +663,10 @@
           "source_tag": "v1.5.1"
         },
         "payload_hash": "457bd7b71c4b90e9b21c64afb1836d6ab0814774593e6cb913be297d99bc670e",
-        "serial": null,
-        "status": "prepared",
+        "serial": 10,
+        "status": "reserved",
         "verification": null,
-        "version": null
+        "version": "1.1.7"
       },
       "ad137d59e4ca3492e67317488bde2b49f7373fa9aa6a1aff5887e18fc1cbe073": {
         "abort_reason": null,
@@ -807,7 +807,7 @@
         "version": "1.0.1"
       }
     },
-    "revision": 142,
+    "revision": 143,
     "schema": 1,
     "source_tags": {
       "v1.0.1": "e71261036f094b711621aa3c53e3267673f72d19",
