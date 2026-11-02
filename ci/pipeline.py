@@ -2,6 +2,7 @@
 import base64
 import copy
 import hashlib
+import io
 import json
 import os
 from pathlib import Path
@@ -12,6 +13,7 @@ import sys
 import urllib.error
 import urllib.parse
 import urllib.request
+import zipfile
 
 import config
 import release_core as core
@@ -91,7 +93,7 @@ def config_snapshot(text):
 def check_files(files):
     for name in files:
         parts = Path(name).parts
-        if any(p in {"VERSION", "config.local.jsonc", "config.jsonc", ".local"} for p in parts):
+        if any(p in {"VERSION", "config.local.jsonc", "config.jsonc", ".local", "out", "__pycache__"} for p in parts) or name.endswith(".pyc"):
             raise ValueError(f"Forbidden tracked file: {name}")
 
 
@@ -108,7 +110,51 @@ def check():
         raise ValueError("Request component does not cover changed fixture sources")
     tags = run("git", "tag", "--list").splitlines()
     preview = core.allocate_source(request["requested_version"], tags)
+    save("checked-request.json", {"request": request, "head_sha": pr["head"]["sha"],
+                                 "base_sha": pr["base"]["sha"], "base_ref": pr["base"]["ref"]})
     print(json.dumps({"request": request, "allocation_preview_only": preview, "changed": changed}))
+
+
+def checked_request(pr):
+    """Consume retained output from the successful required check, not mutable body alone."""
+    head = pr["head"]["sha"]
+    runs = api(f"actions/workflows/check.yml/runs?event=pull_request&status=success&head_sha={head}&per_page=100")
+    matching = [r for r in runs["workflow_runs"] if r["head_sha"] == head
+                and any(x["number"] == pr["number"] for x in r.get("pull_requests", []))]
+    if not matching:
+        raise ValueError("No successful required-check run for this PR head")
+    selected = max(matching, key=lambda r: r["id"])
+    artifacts = api(f"actions/runs/{selected['id']}/artifacts")["artifacts"]
+    records = [a for a in artifacts if a["name"] == "checked-request" and not a["expired"]]
+    if len(records) != 1:
+        raise ValueError("Missing unique retained checked request")
+    data = subprocess.check_output(["gh", "api", f"repos/{REPO}/actions/artifacts/{records[0]['id']}/zip"])
+    if len(data) > 1_000_000:
+        raise ValueError("Oversized checked request")
+    with zipfile.ZipFile(io.BytesIO(data)) as archive:
+        if archive.namelist() != ["checked-request.json"] or archive.getinfo("checked-request.json").file_size > 65536:
+            raise ValueError("Invalid checked-request artifact")
+        record = core.strict_json_loads(archive.read("checked-request.json").decode())
+    if record["head_sha"] != head or record["base_ref"] != pr["base"]["ref"]:
+        raise ValueError("Checked request identity mismatch")
+    if record["request"] != core.parse_request(pr.get("body") or ""):
+        raise ValueError("PR release metadata changed since required checks")
+    parents = run("git", "rev-list", "--parents", "-n", "1", pr["merge_commit_sha"]).split()
+    if parents[1:] != [record["base_sha"], head]:
+        raise ValueError("Final merge parents differ from checked base/head")
+    changed = run("git", "diff", "--name-only", record["base_sha"], pr["merge_commit_sha"]).splitlines()
+    touched = {name.split("/")[1] for name in changed if name.startswith("fixtures/")
+               and len(name.split("/")) > 2 and name.split("/")[1] in COMPONENTS}
+    if record["request"]["release_kind"] == "source" and touched - {record["request"]["component"]}:
+        raise ValueError("Final merge changed fixtures outside checked component")
+    return record, selected["id"]
+
+
+def require_source_progression(sources, channel, components, sha):
+    for component in components:
+        accepted = sources.get(f"{component}/{channel}")
+        if accepted and accepted["sha"] != sha:
+            run("git", "merge-base", "--is-ancestor", accepted["sha"], sha)
 
 
 def source_record(ledger, channel, pr_number, bootstrap=False):
@@ -129,6 +175,12 @@ def source_record(ledger, channel, pr_number, bootstrap=False):
         return None
     run("git", "fetch", "origin", channel, "--tags")
     run("git", "merge-base", "--is-ancestor", sha, f"origin/{channel}")
+    if pr_number:
+        checked, check_run = checked_request(pr)
+        request = checked["request"]
+        audit.update(checked_request=checked, required_check_run=check_run)
+    components = COMPONENTS if request["release_kind"] in {"integration", "promotion"} else (request["component"],)
+    require_source_progression(ledger.data["sources"], channel, components, sha)
     binding = {"source_commit": sha, "request": request, "channel": channel}
     old = ledger.data["requests"].get(key)
     if old:
@@ -148,7 +200,6 @@ def source_record(ledger, channel, pr_number, bootstrap=False):
             raise ValueError("Existing canonical tag has another commit; refusing overwrite")
     else:
         api("git/refs", "POST", {"ref": f"refs/tags/{record['tag']}", "sha": sha})
-    components = COMPONENTS if request["release_kind"] in {"integration", "promotion"} else (request["component"],)
     for component in components:
         ledger.data["sources"][f"{component}/{channel}"] = {"sha": sha, "tag": record["tag"]}
     ledger.write(f"Record source {record['tag']} on {channel}")
@@ -184,7 +235,24 @@ def verify_image(ref, component, material, base_material=None):
         raise ValueError("Pulled image does not contain expected locked material")
     if component != "base" and observed.get("base") != base_material:
         raise ValueError("App does not contain exact expected base material")
-    save(f"verified-{component}.json", {"ref": ref, "observed": observed})
+    # Verify actual dependency bytes separately from the embedded declarations.
+    container = run("docker", "create", ref)
+    hashes = {}
+    try:
+        for owner, expected in [(component, material)] + ([("base", base_material)] if base_material else []):
+            for dep in expected["lock"]["dependencies"]:
+                target = Path(".local/verification") / owner / dep["name"]
+                if target.exists():
+                    shutil.rmtree(target)
+                target.parent.mkdir(parents=True, exist_ok=True)
+                run("docker", "cp", f"{container}:/deps/{owner}/{dep['name']}", str(target))
+                actual = config._material_hash(target)
+                if actual != dep["material_hash"]:
+                    raise ValueError("Pulled dependency bytes differ from locked content")
+                hashes[owner + "/" + dep["name"]] = actual
+    finally:
+        run("docker", "rm", container)
+    save(f"verified-{component}.json", {"ref": ref, "observed": observed, "dependency_hashes": hashes})
 
 
 def publish(component, channel, lock, source, deps, base_ref, base_material):
@@ -290,7 +358,8 @@ def release():
     configs = config_snapshot(text)  # Reject before tags or artifact side effects.
     check_files(run("git", "ls-files").splitlines())
     if not previous:
-        source_record(ledger, channel, pr_number, action == "bootstrap")
+        if pr_number or not all(f"{c}/{channel}" in ledger.data["sources"] for c in COMPONENTS):
+            source_record(ledger, channel, pr_number, action == "bootstrap")
         sources = {c: copy.deepcopy(ledger.data["sources"][f"{c}/{channel}"]) for c in COMPONENTS}
         job = {"config_text": text, "config_sha256": hashlib.sha256(text.encode()).hexdigest(),
                "sources": sources, "builder_sha": builder_identity(),

@@ -294,7 +294,10 @@ def resolve_dependencies(config, root: Path, allowed_repositories: set[str], ci:
             branch_tip = _git(path, "rev-parse", "--verify", f"refs/heads/{dep['branch']}^{{commit}}")
             _git(path, "merge-base", "--is-ancestor", commit, branch_tip)
         else:
-            repo_key = repository.rsplit("/", 1)[-1] + "-" + hashlib.sha256(repository.encode()).hexdigest()[:12]
+            # A fetched branch's lineage snapshot is part of cache identity.
+            # Two aliases may use the same repository/pin through different refs.
+            repo_key = repository.rsplit("/", 1)[-1] + "-" + hashlib.sha256(
+                (repository + "\n" + dep["branch"]).encode()).hexdigest()[:12]
             path = _safe_path(root / ".local" / repo_key / commit)
             if not path.exists():
                 path.parent.mkdir(parents=True, exist_ok=True)
