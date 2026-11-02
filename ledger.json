@@ -1,0 +1,18 @@
+{
+  "active_jobs": {},
+  "core": {
+    "channels": {},
+    "counters": {},
+    "desired": {},
+    "entries": {},
+    "intents": {},
+    "revision": 0,
+    "schema": 1,
+    "source_tags": {}
+  },
+  "jobs": {},
+  "materials": {},
+  "requests": {},
+  "schema": 1,
+  "sources": {}
+}
