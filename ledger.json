@@ -29,10 +29,36 @@
         }
       }
     },
-    "intents": {},
-    "revision": 3,
+    "intents": {
+      "ad137d59e4ca3492e67317488bde2b49f7373fa9aa6a1aff5887e18fc1cbe073": {
+        "abort_reason": null,
+        "base_digest": null,
+        "digest": null,
+        "payload": {
+          "causes": [
+            "material"
+          ],
+          "channel": "dev",
+          "desired_generation": 2,
+          "image": "base",
+          "material_key": "88282e5630916494ee1b4ca16f260ea6ff4e52c5f04ed8b354ffbc3dbe81ff77",
+          "plan_hash": "054881400c429ca1d120cb8dddc58d0dd0e644ea575c4cca330b3e3310fee326",
+          "requires_base": false,
+          "source_commit": "e71261036f094b711621aa3c53e3267673f72d19",
+          "source_tag": "v1.0.1"
+        },
+        "payload_hash": "baef05a69429e8205dde19d0a1b851fea8a367df119592902d2f1018f423501f",
+        "serial": null,
+        "status": "prepared",
+        "verification": null,
+        "version": null
+      }
+    },
+    "revision": 4,
     "schema": 1,
-    "source_tags": {}
+    "source_tags": {
+      "v1.0.1": "e71261036f094b711621aa3c53e3267673f72d19"
+    }
   },
   "jobs": {
     "dev/bootstrap-dev-v1": {
@@ -62,7 +88,9 @@
       "status": "pending"
     },
     "dev/bootstrap-dev-v2": {
-      "base_causes": [],
+      "base_causes": [
+        "material"
+      ],
       "builder_sha": "53a01de26dde26eac4d53560f0de541b8f15dd4b",
       "completed": [],
       "config_sha256": "8eb932286834ab017a9a3677e8aec3e0e6cff0de49508b5534c7fcd5c6184c42",
