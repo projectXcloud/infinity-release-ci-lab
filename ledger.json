@@ -12,7 +12,21 @@
   },
   "jobs": {},
   "materials": {},
-  "requests": {},
+  "requests": {
+    "bootstrap-dev": {
+      "audit": {},
+      "binding": {
+        "channel": "dev",
+        "request": {
+          "component": "base",
+          "release_kind": "integration",
+          "requested_version": "1.0.1"
+        },
+        "source_commit": "e71261036f094b711621aa3c53e3267673f72d19"
+      },
+      "tag": "v1.0.1"
+    }
+  },
   "schema": 1,
   "sources": {}
 }
