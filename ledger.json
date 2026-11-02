@@ -1497,7 +1497,8 @@
       "builder_sha": "ff3f14bfaea2b5b0484bdb800b22a0dbe7236d6e",
       "completed": [
         "base",
-        "app-a"
+        "app-a",
+        "app-b"
       ],
       "config_sha256": "448c8ee89c7a027c079da7be624a59d08eabca3c8bf57bd4331ef635c30aabb1",
       "config_text": "{\n  \"base\": {\n    \"schemaVersion\": 1,\n    \"dependencies\": {},\n    \"build\": {\n      \"platform\": \"linux/amd64\",\n      \"args\": {\n        \"MODE\": \"release\"\n      }\n    }\n  },\n  \"app-a\": {\n    \"schemaVersion\": 1,\n    \"dependencies\": {\n      \"shared\": {\n        \"repository\": \"https://github.com/projectXcloud/infinity-release-ci-lab\",\n        \"branch\": \"fixture/shared\",\n        \"commit\": \"e71261036f094b711621aa3c53e3267673f72d19\",\n        \"version_tag\": \"fixture/shared/v1.0.0\",\n        \"subdirectory\": \"fixtures/deps/shared\"\n      },\n      \"app-only\": {\n        \"repository\": \"https://github.com/projectXcloud/infinity-release-ci-lab\",\n        \"branch\": \"fixture/app-only\",\n        \"commit\": \"2ad047fd880d978bc487344b2aec4693c7821458\",\n        \"version_tag\": \"fixture/app-only/v1.0.1\",\n        \"subdirectory\": \"fixtures/deps/app-only\"\n      }\n    },\n    \"build\": {\n      \"platform\": \"linux/amd64\",\n      \"args\": {\n        \"MODE\": \"release\"\n      }\n    }\n  },\n  \"app-b\": {\n    \"schemaVersion\": 1,\n    \"dependencies\": {\n      \"shared\": {\n        \"repository\": \"https://github.com/projectXcloud/infinity-release-ci-lab\",\n        \"branch\": \"fixture/shared\",\n        \"commit\": \"e71261036f094b711621aa3c53e3267673f72d19\",\n        \"version_tag\": \"fixture/shared/v1.0.0\",\n        \"subdirectory\": \"fixtures/deps/shared\"\n      }\n    },\n    \"build\": {\n      \"platform\": \"linux/amd64\",\n      \"args\": {\n        \"MODE\": \"release\"\n      }\n    }\n  }\n}",
@@ -1906,9 +1907,9 @@
       }
     },
     "app-b/dev": {
-      "digest": "sha256:de33e855c9c239e8fae37e6b645bf891b4269b4bd1a9fdc6268e0a63ab64ab03",
+      "digest": "sha256:893c1b23ad01e0959e660f169889384f0d615e23480ed5d24acfac4667961051",
       "lock": {
-        "base_digest": "sha256:7a38a85b1b7fdbd63c50de468f6b63104d3674a23b2b604c480872973ee182a8",
+        "base_digest": "sha256:b6abee34736486836929bc2e39fc841579ff7fe21c73558f376b04b54b8c23a7",
         "build": {
           "args": {
             "MODE": "release"
@@ -1940,7 +1941,7 @@
           "revision": 2
         },
         "lock": {
-          "base_digest": "sha256:7a38a85b1b7fdbd63c50de468f6b63104d3674a23b2b604c480872973ee182a8",
+          "base_digest": "sha256:b6abee34736486836929bc2e39fc841579ff7fe21c73558f376b04b54b8c23a7",
           "build": {
             "args": {
               "MODE": "release"
@@ -1966,7 +1967,7 @@
           "source_sha": "51991b3834b914dd6fd349f7d46a7ed3071b841e"
         }
       },
-      "ref": "ghcr.io/projectxcloud/infinity-release-ci-lab/app-b/dev@sha256:de33e855c9c239e8fae37e6b645bf891b4269b4bd1a9fdc6268e0a63ab64ab03",
+      "ref": "ghcr.io/projectxcloud/infinity-release-ci-lab/app-b/dev@sha256:893c1b23ad01e0959e660f169889384f0d615e23480ed5d24acfac4667961051",
       "source": {
         "sha": "51991b3834b914dd6fd349f7d46a7ed3071b841e",
         "tag": "v2.0.0"
