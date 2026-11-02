@@ -1,0 +1,6 @@
+.local/
+config.local.jsonc
+config.jsonc
+__pycache__/
+*.pyc
+out/

@@ -1,0 +1,69 @@
+name: Synthetic release
+on:
+  pull_request_target:
+    branches: [dev, main]
+    types: [closed]
+  workflow_dispatch:
+    inputs:
+      action:
+        type: choice
+        options: [reconcile, bootstrap, rollback, cas-test]
+        default: reconcile
+      channel:
+        type: choice
+        options: [dev, main]
+        default: dev
+      request_id:
+        description: Stable retry identity (reuse to resume, new ID for new config)
+        required: true
+        type: string
+      failpoint:
+        type: choice
+        options: [none, after-push]
+        default: none
+      image:
+        type: choice
+        options: [base, app-a, app-b]
+        default: app-a
+      version:
+        description: Existing version for rollback only
+        type: string
+permissions:
+  contents: write
+  packages: write
+  pull-requests: read
+concurrency:
+  group: synthetic-release-ledger
+  cancel-in-progress: false
+jobs:
+  publish:
+    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.merged == true
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PR_NUMBER: ${{ github.event.pull_request.number }}
+      CHANNEL: ${{ github.event.pull_request.base.ref || inputs.channel }}
+      ACTION: ${{ inputs.action || 'release' }}
+      REQUEST_ID: ${{ inputs.request_id }}
+      FAILPOINT: ${{ inputs.failpoint || 'none' }}
+      ROLLBACK_IMAGE: ${{ inputs.image }}
+      ROLLBACK_VERSION: ${{ inputs.version }}
+      CONFIG_DEV: ${{ vars.IMAGE_BUILD_CONFIG_DEV }}
+      CONFIG_MAIN: ${{ vars.IMAGE_BUILD_CONFIG_MAIN }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ github.event.pull_request.base.ref || inputs.channel }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@d0d8abe699bfb85fec6de9f7adb5ae17292296ff
+      - run: uv run --no-project python -m unittest discover -s tests -v
+      - name: Publish and verify synthetic images
+        run: uv run --no-project python ci/pipeline.py release
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: release-evidence-${{ github.run_id }}-${{ github.run_attempt }}
+          path: out/
+          if-no-files-found: warn

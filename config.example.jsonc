@@ -1,0 +1,11 @@
+{
+  // Local whole-document overrides belong in ignored config.local.jsonc.
+  // CI must snapshot its channel variable; this is never a CI fallback.
+  "schemaVersion": 1,
+  "dependencies": {},
+  "build": {
+    "platform": "linux/amd64",
+    "variant": "standard",
+    "args": { "MODE": "release", },
+  },
+}
