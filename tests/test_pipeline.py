@@ -81,7 +81,7 @@ class AdapterTests(unittest.TestCase):
 
     def test_publisher_binds_checked_metadata_and_exact_merge_parents(self):
         request = {"component": "app-a", "requested_version": "1.0.2", "release_kind": "source"}
-        checked = {"request": request, "head_sha": "head", "base_sha": "base", "base_ref": "dev"}
+        checked = {"pr_number": 3, "request": request, "head_sha": "head", "base_sha": "base", "base_ref": "dev"}
         body = "<!-- release-request -->\n```json\n" + json.dumps(request) + "\n```"
         pr = {"number": 3, "head": {"sha": "head"}, "base": {"ref": "dev"}, "merge_commit_sha": "merged", "body": body}
         data = io.BytesIO()
@@ -89,12 +89,16 @@ class AdapterTests(unittest.TestCase):
             archive.writestr("checked-request.json", json.dumps(checked))
         def api(path, *args):
             if path.startswith("actions/workflows/"):
-                return {"workflow_runs": [{"id": 17, "head_sha": "head", "pull_requests": [{"number": 3}]}]}
-            return {"artifacts": [{"id": 9, "name": "checked-request", "expired": False}]}
+                return {"workflow_runs": [{"id": 17, "head_sha": "head", "run_attempt": 1, "pull_requests": []}]}
+            return {"artifacts": [{"id": 9, "name": "checked-request-1", "expired": False}]}
         def run(*args, **kwargs):
             return "merged base head" if args[1] == "rev-list" else "fixtures/app-a/payload.json"
         with patch.object(p, "api", side_effect=api), patch.object(p.subprocess, "check_output", return_value=data.getvalue()), patch.object(p, "run", side_effect=run):
             self.assertEqual(p.checked_request(pr), (checked, 17))
+            unrelated = copy.deepcopy(pr)
+            unrelated["number"] = 99
+            with self.assertRaisesRegex(ValueError, "PR number"):
+                p.checked_request(unrelated)
             changed = copy.deepcopy(pr)
             changed["body"] = body.replace('"app-a"', '"app-b"')
             with self.assertRaisesRegex(ValueError, "metadata changed"):
