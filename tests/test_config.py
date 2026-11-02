@@ -141,6 +141,17 @@ class GitMaterialTests(unittest.TestCase):
         with self.assertRaises(ConfigError):
             self.resolve()
 
+    def test_same_repo_commit_different_branches_have_distinct_lineage_caches(self):
+        self.git("branch", "alternate", self.commit)
+        second = copy.deepcopy(self.config["dependencies"]["shared"])
+        second["branch"] = "alternate"
+        self.config["dependencies"]["second"] = second
+        records = self.resolve()
+        self.assertEqual(len(records), 2)
+        self.assertEqual({r["commit"] for r in records}, {self.commit})
+        self.assertEqual(len({r["context_path"] for r in records}), 2)
+        self.assertEqual(self.resolve(), records)
+
     def test_tag_must_target_exact_pin(self):
         (self.repo / "input.txt").write_text("later")
         self.commit_file()
