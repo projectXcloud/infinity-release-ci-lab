@@ -8,8 +8,8 @@
     },
     "counters": {
       "base/dev": {
-        "last_version": "1.0.0",
-        "serial": 0
+        "last_version": "1.0.1",
+        "serial": 1
       }
     },
     "desired": {
@@ -48,13 +48,13 @@
           "source_tag": "v1.0.1"
         },
         "payload_hash": "baef05a69429e8205dde19d0a1b851fea8a367df119592902d2f1018f423501f",
-        "serial": null,
-        "status": "prepared",
+        "serial": 1,
+        "status": "reserved",
         "verification": null,
-        "version": null
+        "version": "1.0.1"
       }
     },
-    "revision": 4,
+    "revision": 5,
     "schema": 1,
     "source_tags": {
       "v1.0.1": "e71261036f094b711621aa3c53e3267673f72d19"
