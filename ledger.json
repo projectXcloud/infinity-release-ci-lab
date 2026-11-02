@@ -189,7 +189,7 @@
       "3453a1c03c17e7499657dbbd4ad659a828eba45e004a7b394cd9b7bc669cbca3": {
         "abort_reason": null,
         "base_digest": "sha256:a24bef94637087ad5906492db8f5a85b2fcc4f01b969334860d8666f0c3c472d",
-        "digest": null,
+        "digest": "sha256:1ddeba1f024ff012d08b91b36f5497fd30233f0b48948e150807e223325c8800",
         "payload": {
           "causes": [
             "base_patch"
@@ -205,8 +205,8 @@
         },
         "payload_hash": "f086dd13da025813d96e693eb109907f286190bf2751705668fa232b2802a7d1",
         "serial": 1,
-        "status": "reserved",
-        "verification": null,
+        "status": "published",
+        "verification": "ghcr.io/projectxcloud/infinity-release-ci-lab/app-a/main@sha256:1ddeba1f024ff012d08b91b36f5497fd30233f0b48948e150807e223325c8800",
         "version": "1.0.1"
       },
       "4fca01f64bdab53c0fefc941336ba2238d431f5438f05eb13ee8c91d4a5840ef": {
@@ -325,7 +325,7 @@
         "version": "1.0.1"
       }
     },
-    "revision": 49,
+    "revision": 50,
     "schema": 1,
     "source_tags": {
       "v1.0.1": "e71261036f094b711621aa3c53e3267673f72d19",
