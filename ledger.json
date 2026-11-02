@@ -1516,7 +1516,7 @@
           "tag": "v2.0.1"
         }
       },
-      "status": "pending"
+      "status": "complete"
     },
     "dev/pr-3": {
       "base_causes": [
