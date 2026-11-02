@@ -719,6 +719,29 @@
         "verification": null,
         "version": "1.1.7"
       },
+      "a454bc47345746eab821bf6c8a965c509e8d3b7225d4169abf62dc7bb3685858": {
+        "abort_reason": null,
+        "base_digest": null,
+        "digest": null,
+        "payload": {
+          "causes": [
+            "dependency"
+          ],
+          "channel": "dev",
+          "desired_generation": 7,
+          "image": "app-b",
+          "material_key": "29915dd382be777f25ea487dbb7cace989ab24f3df02329e5b17b20a3ffc44aa",
+          "plan_hash": "bd291e58448b3168732304f358b22db7dc0d686b440793a6f839008026ef68c1",
+          "requires_base": true,
+          "source_commit": "1e9d71195315930e9b5fc075adc34b3cebd00128",
+          "source_tag": "v1.5.1"
+        },
+        "payload_hash": "bf9705110d57f6c5d40308411df091f0b7622efdf06a1fa3417063c3bdccb262",
+        "serial": null,
+        "status": "prepared",
+        "verification": null,
+        "version": null
+      },
       "a951b1a7021e86f3bc3562e78eef5d8f62069aa04e5675c35d955b6399867292": {
         "abort_reason": null,
         "base_digest": "sha256:7a38a85b1b7fdbd63c50de468f6b63104d3674a23b2b604c480872973ee182a8",
@@ -927,7 +950,7 @@
         "version": "1.0.1"
       }
     },
-    "revision": 167,
+    "revision": 168,
     "schema": 1,
     "source_tags": {
       "v1.0.1": "e71261036f094b711621aa3c53e3267673f72d19",
