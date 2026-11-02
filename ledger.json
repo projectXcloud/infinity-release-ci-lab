@@ -22,8 +22,8 @@
         "serial": 1
       },
       "app-b/dev": {
-        "last_version": "1.1.2",
-        "serial": 4
+        "last_version": "1.1.3",
+        "serial": 5
       },
       "app-b/main": {
         "last_version": "1.0.1",
@@ -295,10 +295,10 @@
           "source_tag": "v1.5.1"
         },
         "payload_hash": "0ff6ba7e08c3ce6aedff087ca2833efff8c53e09cdc2964b183b033123608e53",
-        "serial": null,
-        "status": "prepared",
+        "serial": 5,
+        "status": "reserved",
         "verification": null,
-        "version": null
+        "version": "1.1.3"
       },
       "0b0a6e9dc2828109b91293a4629576ad149583040ad5635db2eaf7240f7dde7d": {
         "abort_reason": null,
@@ -717,7 +717,7 @@
         "version": "1.0.1"
       }
     },
-    "revision": 123,
+    "revision": 124,
     "schema": 1,
     "source_tags": {
       "v1.0.1": "e71261036f094b711621aa3c53e3267673f72d19",
