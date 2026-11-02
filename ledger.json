@@ -884,8 +884,8 @@
   "schema": 1,
   "sources": {
     "app-a/dev": {
-      "sha": "e71261036f094b711621aa3c53e3267673f72d19",
-      "tag": "v1.0.1"
+      "sha": "f4dbdf0bfc1516b85da75a3fcd72efa364e124fa",
+      "tag": "v1.5.0"
     },
     "app-a/main": {
       "sha": "89a2fb44711f297c2492246406c9dc378dbda876",
