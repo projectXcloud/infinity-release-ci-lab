@@ -34,8 +34,8 @@
         "serial": 2
       },
       "base/main": {
-        "last_version": "1.0.0",
-        "serial": 0
+        "last_version": "1.0.1",
+        "serial": 1
       }
     },
     "desired": {
@@ -174,10 +174,10 @@
           "source_tag": "v1.0.4"
         },
         "payload_hash": "44e2382b6ab9332ec80467df948712aa8a786727ea0e33936e026e113f767a15",
-        "serial": null,
-        "status": "prepared",
+        "serial": 1,
+        "status": "reserved",
         "verification": null,
-        "version": null
+        "version": "1.0.1"
       },
       "4fca01f64bdab53c0fefc941336ba2238d431f5438f05eb13ee8c91d4a5840ef": {
         "abort_reason": null,
@@ -295,7 +295,7 @@
         "version": "1.0.1"
       }
     },
-    "revision": 42,
+    "revision": 43,
     "schema": 1,
     "source_tags": {
       "v1.0.1": "e71261036f094b711621aa3c53e3267673f72d19",
