@@ -645,6 +645,29 @@
         "verification": "ghcr.io/projectxcloud/infinity-release-ci-lab/base/dev@sha256:1572bbcd119a1c45ef91301d0bef114c61c4ca968f2a93d469c711303464c347",
         "version": "1.1.0"
       },
+      "93e5ad2e31f2d98af84ce8e3468a2909ad8a953a82aedf0c6ecf94a0f36b7063": {
+        "abort_reason": null,
+        "base_digest": null,
+        "digest": null,
+        "payload": {
+          "causes": [
+            "material"
+          ],
+          "channel": "dev",
+          "desired_generation": 11,
+          "image": "app-a",
+          "material_key": "5c9e1098c4f2e4382129b25d4ef2da3308227e93647b4852ea103a5be1078345",
+          "plan_hash": "a191b0a967502ac312ef02575e1028a925ced756a4ca1b04b80c14fd32733feb",
+          "requires_base": true,
+          "source_commit": "1e9d71195315930e9b5fc075adc34b3cebd00128",
+          "source_tag": "v1.5.1"
+        },
+        "payload_hash": "457bd7b71c4b90e9b21c64afb1836d6ab0814774593e6cb913be297d99bc670e",
+        "serial": null,
+        "status": "prepared",
+        "verification": null,
+        "version": null
+      },
       "ad137d59e4ca3492e67317488bde2b49f7373fa9aa6a1aff5887e18fc1cbe073": {
         "abort_reason": null,
         "base_digest": null,
@@ -784,7 +807,7 @@
         "version": "1.0.1"
       }
     },
-    "revision": 140,
+    "revision": 141,
     "schema": 1,
     "source_tags": {
       "v1.0.1": "e71261036f094b711621aa3c53e3267673f72d19",
