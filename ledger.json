@@ -48,8 +48,8 @@
         "material_key": "3d486326c49ecd52cc5b81bcf7567deac260f51f0f5c9f237fb1a9b5e3dc924d"
       },
       "app-b/dev": {
-        "generation": 4,
-        "material_key": "29915dd382be777f25ea487dbb7cace989ab24f3df02329e5b17b20a3ffc44aa"
+        "generation": 5,
+        "material_key": "adfd3b765bb64feafd5ea96cfd16f20c51e49822d611e3b64894d9fffe585847"
       },
       "app-b/main": {
         "generation": 2,
@@ -604,7 +604,7 @@
         "version": "1.0.1"
       }
     },
-    "revision": 103,
+    "revision": 104,
     "schema": 1,
     "source_tags": {
       "v1.0.1": "e71261036f094b711621aa3c53e3267673f72d19",
