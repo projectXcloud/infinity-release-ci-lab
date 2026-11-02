@@ -1533,7 +1533,7 @@
           "tag": "v1.5.2"
         }
       },
-      "status": "pending"
+      "status": "complete"
     },
     "main/bootstrap-main-v1": {
       "base_causes": [
