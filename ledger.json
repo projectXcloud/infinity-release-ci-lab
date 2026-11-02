@@ -33,6 +33,10 @@
         "generation": 2,
         "material_key": "9f3dec36a98940ec3e3d8e6122d552f9c6445c363bab4eaecce57d4cd0cdec0f"
       },
+      "app-a/main": {
+        "generation": 1,
+        "material_key": "5b49d3babd0d2198a5bdadaad8333c7c45d3f735992c13e01c7d7bd4bc2240fc"
+      },
       "app-b/dev": {
         "generation": 2,
         "material_key": "704a447a8e35587a6487eb69e4b9c69b83a7019e8026bc2f44969fee3f8b10ac"
@@ -206,7 +210,7 @@
         "version": "1.0.1"
       }
     },
-    "revision": 30,
+    "revision": 31,
     "schema": 1,
     "source_tags": {
       "v1.0.1": "e71261036f094b711621aa3c53e3267673f72d19",
