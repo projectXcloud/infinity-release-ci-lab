@@ -1,6 +1,6 @@
 {
   "active_jobs": {
-    "dev": "dev/pr-4",
+    "dev": "dev/pr-7",
     "main": "main/pr-5"
   },
   "core": {
@@ -480,6 +480,28 @@
         }
       },
       "status": "complete"
+    },
+    "dev/pr-7": {
+      "base_causes": [],
+      "builder_sha": "93c2cca534a558cd77ee8509bbfdaffa65affab8",
+      "completed": [],
+      "config_sha256": "8eb932286834ab017a9a3677e8aec3e0e6cff0de49508b5534c7fcd5c6184c42",
+      "config_text": "// Synthetic fixture pins; captured once by CI.\n{\n  \"base\": {\n    \"schemaVersion\": 1,\n    \"dependencies\": {},\n    \"build\": {\n      \"platform\": \"linux/amd64\",\n      \"args\": {\n        \"MODE\": \"release\"\n      }\n    }\n  },\n  \"app-a\": {\n    \"schemaVersion\": 1,\n    \"dependencies\": {\n      \"shared\": {\n        \"repository\": \"https://github.com/projectXcloud/infinity-release-ci-lab\",\n        \"branch\": \"fixture/shared\",\n        \"commit\": \"e71261036f094b711621aa3c53e3267673f72d19\",\n        \"version_tag\": \"fixture/shared/v1.0.0\",\n        \"subdirectory\": \"fixtures/deps/shared\"\n      },\n      \"app-only\": {\n        \"repository\": \"https://github.com/projectXcloud/infinity-release-ci-lab\",\n        \"branch\": \"fixture/app-only\",\n        \"commit\": \"e71261036f094b711621aa3c53e3267673f72d19\",\n        \"version_tag\": \"fixture/app-only/v1.0.0\",\n        \"subdirectory\": \"fixtures/deps/app-only\"\n      }\n    },\n    \"build\": {\n      \"platform\": \"linux/amd64\",\n      \"args\": {\n        \"MODE\": \"release\"\n      }\n    }\n  },\n  \"app-b\": {\n    \"schemaVersion\": 1,\n    \"dependencies\": {\n      \"shared\": {\n        \"repository\": \"https://github.com/projectXcloud/infinity-release-ci-lab\",\n        \"branch\": \"fixture/shared\",\n        \"commit\": \"e71261036f094b711621aa3c53e3267673f72d19\",\n        \"version_tag\": \"fixture/shared/v1.0.0\",\n        \"subdirectory\": \"fixtures/deps/shared\"\n      }\n    },\n    \"build\": {\n      \"platform\": \"linux/amd64\",\n      \"args\": {\n        \"MODE\": \"release\"\n      }\n    }\n  }\n}",
+      "sources": {
+        "app-a": {
+          "sha": "1e9d71195315930e9b5fc075adc34b3cebd00128",
+          "tag": "v1.5.1"
+        },
+        "app-b": {
+          "sha": "1e9d71195315930e9b5fc075adc34b3cebd00128",
+          "tag": "v1.5.1"
+        },
+        "base": {
+          "sha": "1e9d71195315930e9b5fc075adc34b3cebd00128",
+          "tag": "v1.5.1"
+        }
+      },
+      "status": "pending"
     },
     "main/bootstrap-main-v1": {
       "base_causes": [
