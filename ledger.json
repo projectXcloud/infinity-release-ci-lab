@@ -1258,7 +1258,7 @@
           "tag": "v1.5.2"
         }
       },
-      "status": "pending"
+      "status": "complete"
     },
     "dev/matrix-41460080541-1-retry": {
       "base_causes": [],
