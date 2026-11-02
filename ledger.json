@@ -13,6 +13,10 @@
       }
     },
     "desired": {
+      "app-a/dev": {
+        "generation": 1,
+        "material_key": "bd29f8936585366bdbd59b7087b82eaedb7199288a7d554253fad775441acafd"
+      },
       "base/dev": {
         "generation": 2,
         "material_key": "88282e5630916494ee1b4ca16f260ea6ff4e52c5f04ed8b354ffbc3dbe81ff77"
@@ -61,7 +65,7 @@
         "version": "1.0.1"
       }
     },
-    "revision": 7,
+    "revision": 8,
     "schema": 1,
     "source_tags": {
       "v1.0.1": "e71261036f094b711621aa3c53e3267673f72d19"
