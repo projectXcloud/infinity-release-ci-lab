@@ -638,7 +638,9 @@
         "base_patch"
       ],
       "builder_sha": "ff3f14bfaea2b5b0484bdb800b22a0dbe7236d6e",
-      "completed": [],
+      "completed": [
+        "base"
+      ],
       "config_sha256": "8eb932286834ab017a9a3677e8aec3e0e6cff0de49508b5534c7fcd5c6184c42",
       "config_text": "// Synthetic fixture pins; captured once by CI.\n{\n  \"base\": {\n    \"schemaVersion\": 1,\n    \"dependencies\": {},\n    \"build\": {\n      \"platform\": \"linux/amd64\",\n      \"args\": {\n        \"MODE\": \"release\"\n      }\n    }\n  },\n  \"app-a\": {\n    \"schemaVersion\": 1,\n    \"dependencies\": {\n      \"shared\": {\n        \"repository\": \"https://github.com/projectXcloud/infinity-release-ci-lab\",\n        \"branch\": \"fixture/shared\",\n        \"commit\": \"e71261036f094b711621aa3c53e3267673f72d19\",\n        \"version_tag\": \"fixture/shared/v1.0.0\",\n        \"subdirectory\": \"fixtures/deps/shared\"\n      },\n      \"app-only\": {\n        \"repository\": \"https://github.com/projectXcloud/infinity-release-ci-lab\",\n        \"branch\": \"fixture/app-only\",\n        \"commit\": \"e71261036f094b711621aa3c53e3267673f72d19\",\n        \"version_tag\": \"fixture/app-only/v1.0.0\",\n        \"subdirectory\": \"fixtures/deps/app-only\"\n      }\n    },\n    \"build\": {\n      \"platform\": \"linux/amd64\",\n      \"args\": {\n        \"MODE\": \"release\"\n      }\n    }\n  },\n  \"app-b\": {\n    \"schemaVersion\": 1,\n    \"dependencies\": {\n      \"shared\": {\n        \"repository\": \"https://github.com/projectXcloud/infinity-release-ci-lab\",\n        \"branch\": \"fixture/shared\",\n        \"commit\": \"e71261036f094b711621aa3c53e3267673f72d19\",\n        \"version_tag\": \"fixture/shared/v1.0.0\",\n        \"subdirectory\": \"fixtures/deps/shared\"\n      }\n    },\n    \"build\": {\n      \"platform\": \"linux/amd64\",\n      \"args\": {\n        \"MODE\": \"release\"\n      }\n    }\n  }\n}",
       "sources": {
@@ -1042,7 +1044,7 @@
       }
     },
     "base/dev": {
-      "digest": "sha256:1572bbcd119a1c45ef91301d0bef114c61c4ca968f2a93d469c711303464c347",
+      "digest": "sha256:7a38a85b1b7fdbd63c50de468f6b63104d3674a23b2b604c480872973ee182a8",
       "lock": {
         "base_digest": null,
         "build": {
@@ -1052,11 +1054,11 @@
           "platform": "linux/amd64",
           "variant": "standard"
         },
-        "builder_sha": "93c2cca534a558cd77ee8509bbfdaffa65affab8",
+        "builder_sha": "ff3f14bfaea2b5b0484bdb800b22a0dbe7236d6e",
         "dependencies": [],
         "publishable": true,
         "schemaVersion": 1,
-        "source_sha": "1e9d71195315930e9b5fc075adc34b3cebd00128"
+        "source_sha": "ad39e4c9f86af7c1800109e9c37702e5f697e198"
       },
       "material": {
         "fixture": {
@@ -1073,17 +1075,17 @@
             "platform": "linux/amd64",
             "variant": "standard"
           },
-          "builder_sha": "93c2cca534a558cd77ee8509bbfdaffa65affab8",
+          "builder_sha": "ff3f14bfaea2b5b0484bdb800b22a0dbe7236d6e",
           "dependencies": [],
           "publishable": true,
           "schemaVersion": 1,
-          "source_sha": "1e9d71195315930e9b5fc075adc34b3cebd00128"
+          "source_sha": "ad39e4c9f86af7c1800109e9c37702e5f697e198"
         }
       },
-      "ref": "ghcr.io/projectxcloud/infinity-release-ci-lab/base/dev@sha256:1572bbcd119a1c45ef91301d0bef114c61c4ca968f2a93d469c711303464c347",
+      "ref": "ghcr.io/projectxcloud/infinity-release-ci-lab/base/dev@sha256:7a38a85b1b7fdbd63c50de468f6b63104d3674a23b2b604c480872973ee182a8",
       "source": {
-        "sha": "1e9d71195315930e9b5fc075adc34b3cebd00128",
-        "tag": "v1.5.1"
+        "sha": "ad39e4c9f86af7c1800109e9c37702e5f697e198",
+        "tag": "v1.5.2"
       }
     },
     "base/main": {
