@@ -5,10 +5,15 @@
   "core": {
     "channels": {},
     "counters": {},
-    "desired": {},
+    "desired": {
+      "base/dev": {
+        "generation": 1,
+        "material_key": "520d861e5293edb913d357bc3698e83e8d064aa2036f125ff16878c9004d906e"
+      }
+    },
     "entries": {},
     "intents": {},
-    "revision": 0,
+    "revision": 1,
     "schema": 1,
     "source_tags": {}
   },
