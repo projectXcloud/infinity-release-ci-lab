@@ -18,8 +18,8 @@
         "serial": 0
       },
       "base/dev": {
-        "last_version": "1.0.1",
-        "serial": 1
+        "last_version": "1.0.2",
+        "serial": 2
       }
     },
     "desired": {
@@ -114,13 +114,13 @@
           "source_tag": "v1.0.2"
         },
         "payload_hash": "e89210b2ebcb39498c9cc33c2f228480317617dec6a2286df4540690c9c74ac9",
-        "serial": null,
-        "status": "prepared",
+        "serial": 2,
+        "status": "reserved",
         "verification": null,
-        "version": null
+        "version": "1.0.2"
       }
     },
-    "revision": 13,
+    "revision": 14,
     "schema": 1,
     "source_tags": {
       "v1.0.1": "e71261036f094b711621aa3c53e3267673f72d19",
