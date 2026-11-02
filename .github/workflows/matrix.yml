@@ -1,0 +1,78 @@
+name: Live synthetic matrix
+on:
+  workflow_dispatch:
+    inputs:
+      status_sha:
+        description: Exact validation PR head to receive the synthetic-live-matrix status
+        required: true
+        type: string
+permissions:
+  contents: write
+  packages: write
+  statuses: write
+concurrency:
+  group: synthetic-release-ledger
+  queue: max
+  cancel-in-progress: false
+jobs:
+  exercise:
+    if: github.ref == 'refs/heads/dev'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      GH_TOKEN: ${{ github.token }}
+      STATUS_SHA: ${{ inputs.status_sha }}
+      CHANNEL: dev
+      PR_NUMBER: ''
+      CONFIG_DEV: ${{ vars.IMAGE_BUILD_CONFIG_DEV }}
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@d0d8abe699bfb85fec6de9f7adb5ae17292296ff
+      - name: Bind validation status to an exact commit
+        id: status
+        run: |
+          uv run --no-project python - <<'PY'
+          import os, re, sys
+          sys.path.insert(0, 'ci')
+          import pipeline as p
+          sha = os.environ['STATUS_SHA']
+          if not re.fullmatch(r'[0-9a-f]{40}', sha):
+              raise ValueError('Full validation SHA required')
+          p.api('commits/' + sha)
+          p.api('statuses/' + sha, 'POST', {
+              'state': 'pending', 'context': 'synthetic-live-matrix',
+              'description': 'Running actual synthetic publication and recovery cases',
+              'target_url': f'https://github.com/{p.REPO}/actions/runs/{os.environ["GITHUB_RUN_ID"]}'})
+          PY
+      - name: Exercise actual publication and recovery
+        id: matrix
+        run: uv run --no-project python -u ci/live_matrix.py
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        id: evidence
+        with:
+          name: live-matrix-${{ github.run_id }}-${{ github.run_attempt }}
+          path: out/
+          if-no-files-found: error
+      - name: Report exact validation result
+        if: always() && steps.status.outcome == 'success'
+        env:
+          MATRIX_RESULT: ${{ steps.matrix.outcome }}
+          EVIDENCE_RESULT: ${{ steps.evidence.outcome }}
+        run: |
+          uv run --no-project python - <<'PY'
+          import os, sys
+          sys.path.insert(0, 'ci')
+          import pipeline as p
+          passed = os.environ['MATRIX_RESULT'] == 'success' and os.environ['EVIDENCE_RESULT'] == 'success'
+          p.api('statuses/' + os.environ['STATUS_SHA'], 'POST', {
+              'state': 'success' if passed else 'failure',
+              'context': 'synthetic-live-matrix',
+              'description': 'Synthetic live cases and evidence upload passed' if passed else 'Inspect retained synthetic live-case failure',
+              'target_url': f'https://github.com/{p.REPO}/actions/runs/{os.environ["GITHUB_RUN_ID"]}'})
+          PY
