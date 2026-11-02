@@ -936,6 +936,35 @@
         "source_commit": "f4dbdf0bfc1516b85da75a3fcd72efa364e124fa"
       },
       "tag": "v1.5.0"
+    },
+    "pr-5": {
+      "audit": {
+        "checked_request": {
+          "base_ref": "main",
+          "base_sha": "89a2fb44711f297c2492246406c9dc378dbda876",
+          "head_sha": "93c2cca534a558cd77ee8509bbfdaffa65affab8",
+          "pr_number": 5,
+          "request": {
+            "component": "base",
+            "release_kind": "source",
+            "requested_version": "1.0.1"
+          }
+        },
+        "head_sha": "93c2cca534a558cd77ee8509bbfdaffa65affab8",
+        "merge_sha": "d1a9ac12ed49e439392a015e82d196b4fa4cb0f5",
+        "pr": "https://github.com/projectXcloud/infinity-release-ci-lab/pull/5",
+        "required_check_run": 41458645693
+      },
+      "binding": {
+        "channel": "main",
+        "request": {
+          "component": "base",
+          "release_kind": "source",
+          "requested_version": "1.0.1"
+        },
+        "source_commit": "d1a9ac12ed49e439392a015e82d196b4fa4cb0f5"
+      },
+      "tag": "v1.0.4"
     }
   },
   "schema": 1,
