@@ -712,6 +712,29 @@
         "verification": null,
         "version": "1.1.7"
       },
+      "a951b1a7021e86f3bc3562e78eef5d8f62069aa04e5675c35d955b6399867292": {
+        "abort_reason": null,
+        "base_digest": null,
+        "digest": null,
+        "payload": {
+          "causes": [
+            "dependency"
+          ],
+          "channel": "dev",
+          "desired_generation": 14,
+          "image": "app-a",
+          "material_key": "2640c5a8e8d3c00e89989c9f91383773b520a7e693da6b63a9d13a093b9fca7e",
+          "plan_hash": "0254eb1ad45b4e8fe47be2c110e0d7e1a9bae767f1a19f44be457859e567cb3b",
+          "requires_base": true,
+          "source_commit": "1e9d71195315930e9b5fc075adc34b3cebd00128",
+          "source_tag": "v1.5.1"
+        },
+        "payload_hash": "890bdcbe84f60fd8fa61fec6629c496c7e7b7e209c91c1baf0512ad787e6f4f1",
+        "serial": null,
+        "status": "prepared",
+        "verification": null,
+        "version": null
+      },
       "ad137d59e4ca3492e67317488bde2b49f7373fa9aa6a1aff5887e18fc1cbe073": {
         "abort_reason": null,
         "base_digest": null,
@@ -897,7 +920,7 @@
         "version": "1.0.1"
       }
     },
-    "revision": 161,
+    "revision": 162,
     "schema": 1,
     "source_tags": {
       "v1.0.1": "e71261036f094b711621aa3c53e3267673f72d19",
