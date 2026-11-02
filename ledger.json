@@ -30,8 +30,8 @@
         "serial": 1
       },
       "base/dev": {
-        "last_version": "1.1.2",
-        "serial": 5
+        "last_version": "1.1.3",
+        "serial": 6
       },
       "base/main": {
         "last_version": "1.0.1",
@@ -838,10 +838,10 @@
           "source_tag": "v1.5.2"
         },
         "payload_hash": "96bf437350beafa0b0449beae401495371c259be5ab05dabfe0dfaa186115487",
-        "serial": null,
-        "status": "prepared",
+        "serial": 6,
+        "status": "reserved",
         "verification": null,
-        "version": null
+        "version": "1.1.3"
       },
       "f32e44d5ac5fa2514cd7e78e2ec1a628e58ea5c5ea6c4c78d4ebe6f735431818": {
         "abort_reason": null,
@@ -890,7 +890,7 @@
         "version": "1.0.1"
       }
     },
-    "revision": 157,
+    "revision": 158,
     "schema": 1,
     "source_tags": {
       "v1.0.1": "e71261036f094b711621aa3c53e3267673f72d19",
