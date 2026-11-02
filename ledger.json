@@ -149,6 +149,29 @@
       }
     },
     "intents": {
+      "4fca01f64bdab53c0fefc941336ba2238d431f5438f05eb13ee8c91d4a5840ef": {
+        "abort_reason": null,
+        "base_digest": null,
+        "digest": null,
+        "payload": {
+          "causes": [
+            "app_minor"
+          ],
+          "channel": "dev",
+          "desired_generation": 3,
+          "image": "app-a",
+          "material_key": "304eefa108bf31529e23a38e1ff91ff2fa12cf3e81f6438c2d880d5f1114c861",
+          "plan_hash": "792da0cb5dc1fbd265f44ece2960e2a08e0806913ae7357d7e364b66b5961d76",
+          "requires_base": true,
+          "source_commit": "f4dbdf0bfc1516b85da75a3fcd72efa364e124fa",
+          "source_tag": "v1.5.0"
+        },
+        "payload_hash": "338028056643e747b44a8ff1220f799ccac7a2c4015fc50a174d638744bdb3f5",
+        "serial": null,
+        "status": "prepared",
+        "verification": null,
+        "version": null
+      },
       "579792fcf4d952a8c949b1cf34297673e90f9f9e45413edce7aa8afda361a8d2": {
         "abort_reason": null,
         "base_digest": "sha256:e17cfa3131f62f6c0a09672f27352ad8bc15befa15822a668bdec00a71745b70",
@@ -242,11 +265,12 @@
         "version": "1.0.1"
       }
     },
-    "revision": 35,
+    "revision": 36,
     "schema": 1,
     "source_tags": {
       "v1.0.1": "e71261036f094b711621aa3c53e3267673f72d19",
-      "v1.0.2": "d2ce7458a16f621daa25d3be189d70eff1dffe67"
+      "v1.0.2": "d2ce7458a16f621daa25d3be189d70eff1dffe67",
+      "v1.5.0": "f4dbdf0bfc1516b85da75a3fcd72efa364e124fa"
     }
   },
   "jobs": {
