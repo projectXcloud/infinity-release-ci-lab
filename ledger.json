@@ -358,7 +358,7 @@
           "tag": "v1.0.3"
         }
       },
-      "status": "pending"
+      "status": "complete"
     },
     "main/pr-2": {
       "base_causes": [],
