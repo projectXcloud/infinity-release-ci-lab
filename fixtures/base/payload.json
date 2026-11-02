@@ -1,1 +1,5 @@
-{"fixture": "base", "revision": 2, "purpose": "synthetic hotfix"}
+{
+  "fixture": "base",
+  "revision": 3,
+  "purpose": "synthetic base major release"
+}
